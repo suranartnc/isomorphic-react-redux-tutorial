@@ -1,49 +1,39 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import * as ArticleActions from '../actions/ArticleActions';
 import fetchData, { api } from '../utils/fetchData';
 
 import ArticleList from './ArticleList';
 import Article from './Article';
 import SearchBar from './SearchBar';
 
-export default class Main extends Component {
-	
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			articles: []
-		}
-
-		this.getSearchResults = this.getSearchResults.bind(this);
-	}
+class Home extends Component {
 
 	componentDidMount() {
-		this.getLatestArticles();
-	}
-
-	getLatestArticles() {
-		fetchData(`${api.stackExchange}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
-			this.setState({
-				articles: data.items
-			});
-		});
-	}
-
-	getSearchResults(keyword) {
-		fetchData(`${api.stackExchange}search/advanced?order=desc&sort=activity&site=stackoverflow&q=${keyword}`, (data) => {
-			this.setState({
-				articles: data.items
-			});
-		});
+		this.props.getLatestArticles();
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<div>
-				<SearchBar getSearchResults={this.getSearchResults} />
-				<ArticleList articles={this.state.articles} />
+				<SearchBar getSearchResults={this.props.getSearchResults} />
+				<ArticleList articles={this.props.articles} />
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		articles: state.articleList
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(ArticleActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
