@@ -19,7 +19,7 @@ const Main = () => {
 		<div>
 			{articles.map(function(article, index) {
 				return (
-					<article>
+					<article key={ article.id }>
 						<h2>{ article.title }</h2>
 					</article>
 				);
