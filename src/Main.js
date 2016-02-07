@@ -22,6 +22,15 @@ export default class Main extends Component {
 				}
 			]
 		}
+
+		setTimeout(() => {
+			this.setState({
+				articles: this.state.articles.concat([{
+					id: 4,
+					title: 'Title 4'
+				}])
+			});
+		}, 2000);
 	}
 
 	render() {
