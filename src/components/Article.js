@@ -6,7 +6,7 @@ const Article = (props) => {
 
 	return (
 		<article>
-			<Link to={`questions/${props.article.question_id}`}>{ props.article.title }</Link>
+			<Link to={`/questions/${props.article.question_id}`}>{ props.article.title }</Link>
 		</article>
 	);
 }

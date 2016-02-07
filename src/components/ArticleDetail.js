@@ -20,6 +20,11 @@ export default class ArticleDetail extends Component {
 		this.getLatestArticles();
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.getArticleById(nextProps.params.question_id);
+		this.getLatestArticles();
+	}
+
 	getArticleById(id) {
 		fetchData(`${api.stackExchange}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`, (data) => {
 			this.setState({
