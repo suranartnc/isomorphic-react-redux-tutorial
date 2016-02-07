@@ -21,8 +21,10 @@ export default class ArticleDetail extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.getArticleById(nextProps.params.question_id);
-		this.getLatestArticles();
+		if (this.props.params.question_id !== nextProps.params.question_id) {
+			this.getArticleById(nextProps.params.question_id);
+			this.getLatestArticles();		
+		}
 	}
 
 	getArticleById(id) {
