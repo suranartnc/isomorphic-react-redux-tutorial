@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
 
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 import Article from './Article';
 
+const API_URL = 'https://api.stackexchange.com/2.2/';
+
+function fetchData(url, callback) {
+	fetch(url)
+	  	.then(response => {
+	    	if (response.status >= 400) {
+	      		throw new Error("Bad response from server");
+	    	}
+	    	return response.json();
+	  	})
+	  	.then(data => {
+	    	callback(data);
+	  	});
+}
 
 export default class Main extends Component {
 	
@@ -9,26 +26,14 @@ export default class Main extends Component {
 		super(props);
 
 		this.state = {
-			articles: [
-				{
-					id: 1,
-					title: 'Title 1'
-				}, {
-					id: 2,
-					title: 'Title 2'
-				}, {
-					id: 3,
-					title: 'Title 3'
-				}
-			]
+			articles: []
 		}
 
 		setTimeout(() => {
-			this.setState({
-				articles: this.state.articles.concat([{
-					id: 4,
-					title: 'Title 4'
-				}])
+			fetchData(`${API_URL}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
+				this.setState({
+					articles: data.items
+				});
 			});
 		}, 2000);
 	}
@@ -38,7 +43,7 @@ export default class Main extends Component {
 			<div>
 				{this.state.articles.map(function(article, index) {
 					return (
-						<Article key={ article.id } article={article} />
+						<Article key={ article.question_id } article={article} />
 					);
 				})}
 			</div>
