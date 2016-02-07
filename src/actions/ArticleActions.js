@@ -7,9 +7,11 @@ export function getLatestArticles() {
 	}
 }
 
-export function getSearchResults() {
+export function getSearchResults(keyword) {
 	return {
-		type: 'GET_SEARCH_RESULTS'
+		type: 'GET_SEARCH_RESULTS',
+		promise: getFetchPromise(`${api.stackExchange}search/advanced?order=desc&sort=activity&site=stackoverflow&q=${keyword}`)
+
 	}
 }
 
