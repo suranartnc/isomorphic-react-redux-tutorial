@@ -7,4 +7,14 @@ const history = createBrowserHistory();
 
 import routes from './routes';
 
-ReactDOM.render(<Router routes={routes} history={history} />, document.getElementById('app'));
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+
+const store = createStore(reducers);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Router routes={routes} history={history} />
+	</Provider>
+	, document.getElementById('app'));
