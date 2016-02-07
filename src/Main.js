@@ -32,14 +32,16 @@ export default class Main extends Component {
 		}
 
 		this.getSearchResults = this.getSearchResults.bind(this);
-		
-		setTimeout(() => {
-			fetchData(`${API_URL}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
-				this.setState({
-					articles: data.items
-				});
+
+		this.getLatestArticles();
+	}
+
+	getLatestArticles() {
+		fetchData(`${API_URL}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
+			this.setState({
+				articles: data.items
 			});
-		}, 2000);
+		});
 	}
 
 	getSearchResults(keyword) {
