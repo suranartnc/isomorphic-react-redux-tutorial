@@ -6,9 +6,13 @@ export default class SearchForm extends Component {
 		super(props);
 	}
 
+	handleFormSubmit(event) {
+		event.preventDefault();
+	}
+
 	render() {
 		return (
-			<form>
+			<form onSubmit={this.handleFormSubmit}>
 				<input type="text" placeholder="Search" />
 				<button>Submit</button>
 			</form>
