@@ -1,55 +1,45 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import fetchData, { api } from '../utils/fetchData';
+import * as ArticleActions from '../actions/ArticleActions';
 
 import ArticleList from './ArticleList';
 
-export default class ArticleDetail extends Component {
-	
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			article: {},
-			latestArticles: []
-		}
-	}
+class ArticleDetail extends Component {
 
 	componentDidMount() {
-		this.getArticleById(this.props.params.question_id);
-		this.getLatestArticles();
+		this.props.getArticleById(this.props.params.question_id);
+		this.props.getLatestArticles();
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.params.question_id !== nextProps.params.question_id) {
-			this.getArticleById(nextProps.params.question_id);
-			this.getLatestArticles();		
+			this.props.getArticleById(nextProps.params.question_id);
+			this.props.getLatestArticles();		
 		}
-	}
-
-	getArticleById(id) {
-		fetchData(`${api.stackExchange}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`, (data) => {
-			this.setState({
-				article: data.items[0]
-			});
-		});
-	}
-
-	getLatestArticles() {
-		fetchData(`${api.stackExchange}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
-			this.setState({
-				latestArticles: data.items
-			});
-		});
 	}
 
 	render() {
 		return (
 			<article>
-				<h1>{ this.state.article.title }</h1>
-				<div dangerouslySetInnerHTML={{__html: this.state.article.body }} />
-				<ArticleList articles={this.state.latestArticles} />
+				<h1>{ this.props.article.title }</h1>
+				<div dangerouslySetInnerHTML={{__html: this.props.article.body }} />
+				<ArticleList articles={this.props.latestArticles} />
 			</article>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		latestArticles: state.articleList,
+		article: state.articleActive
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(ArticleActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleDetail);

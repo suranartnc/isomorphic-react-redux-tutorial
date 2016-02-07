@@ -17,6 +17,7 @@ export function getSearchResults(keyword) {
 
 export function getArticleById(id) {
 	return {
-		type: 'GET_ARTICLE_BY_ID'
+		type: 'GET_ARTICLE_BY_ID',
+		promise: getFetchPromise(`${api.stackExchange}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`)
 	}
 }

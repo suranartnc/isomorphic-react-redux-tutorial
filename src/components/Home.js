@@ -3,10 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as ArticleActions from '../actions/ArticleActions';
-import fetchData, { api } from '../utils/fetchData';
 
 import ArticleList from './ArticleList';
-import Article from './Article';
 import SearchBar from './SearchBar';
 
 class Home extends Component {
