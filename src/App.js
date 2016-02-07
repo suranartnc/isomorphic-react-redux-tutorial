@@ -1,8 +1,20 @@
 import React from 'react';
 
+import Header from './Header';
+import Main from './Main';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
+
 const App = () => {
 	return (
-		<div>Rendered by ReactDOM</div>
+		<div>
+			<Header />
+			<div>
+				<Main />
+				<Sidebar />
+			</div>
+			<Footer />
+		</div>
 	);
 }
 
