@@ -10,7 +10,9 @@ export default class ArticleDetail extends Component {
 		this.state = {
 			article: {}
 		}
+	}
 
+	componentDidMount() {
 		this.getArticleById(this.props.params.question_id);
 	}
 
