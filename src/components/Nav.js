@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Nav = () => {
 	return (
 		<nav>
-			Menu
+			<ul>
+				<li>
+					<Link to={`/`}>Home</Link>
+				</li>
+			</ul>
 		</nav>
 	);
 }
