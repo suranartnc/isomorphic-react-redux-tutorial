@@ -10,7 +10,7 @@ export default class SearchForm extends Component {
 
 	handleFormSubmit(event) {
 		event.preventDefault();
-		console.log(this.refs.keyword.value);
+		this.props.getSearchResults(this.refs.keyword.value);
 	}
 
 	render() {

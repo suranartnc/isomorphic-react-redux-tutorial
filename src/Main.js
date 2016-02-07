@@ -40,10 +40,14 @@ export default class Main extends Component {
 		}, 2000);
 	}
 
+	getSearchResults(keyword) {
+		console.log(keyword);
+	}
+
 	render() {
 		return (
 			<div>
-				<SearchBar />
+				<SearchBar getSearchResults={this.getSearchResults} />
 				<ArticleList articles={this.state.articles} />
 			</div>
 		);
