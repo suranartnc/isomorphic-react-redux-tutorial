@@ -16,7 +16,6 @@ class Home extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<SearchBar getSearchResults={this.props.getSearchResults} />

@@ -7,11 +7,12 @@ const history = createBrowserHistory();
 
 import routes from './routes';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
+import promiseMiddleware from './middlewares/promiseMiddleware';
 
-const store = createStore(reducers);
+const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
 
 ReactDOM.render(
 	<Provider store={store}>

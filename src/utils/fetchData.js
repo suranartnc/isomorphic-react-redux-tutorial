@@ -17,3 +17,7 @@ export default function (url, callback) {
 	    	callback(data);
 	  	});
 }
+
+export function getFetchPromise(url) {
+	return fetch(url);
+}
