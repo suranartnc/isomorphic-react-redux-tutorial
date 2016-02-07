@@ -5,6 +5,7 @@ require('isomorphic-fetch');
 
 import ArticleList from './ArticleList';
 import Article from './Article';
+import SearchBar from './SearchBar';
 
 const API_URL = 'https://api.stackexchange.com/2.2/';
 
@@ -42,6 +43,7 @@ export default class Main extends Component {
 	render() {
 		return (
 			<div>
+				<SearchBar />
 				<ArticleList articles={this.state.articles} />
 			</div>
 		);
