@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Article from './Article';
+
 const Main = () => {
 
 	const articles = [
@@ -19,9 +21,7 @@ const Main = () => {
 		<div>
 			{articles.map(function(article, index) {
 				return (
-					<article key={ article.id }>
-						<h2>{ article.title }</h2>
-					</article>
+					<Article key={ article.id } article={article} />
 				);
 			})}
 		</div>
