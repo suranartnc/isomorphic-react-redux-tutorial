@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
 
-    entry: path.join(__dirname, 'app.js'),
+    entry: path.join(__dirname, 'src/client.js'),
 
     output: {
         path: path.join(__dirname, 'public'),
@@ -15,7 +15,7 @@ module.exports = {
             {
                 test: /\.js?$/,
                 loader: 'babel',
-                exclude: 'node_modules'
+                exclude: /node_modules/
             }
         ]
     }

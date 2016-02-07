@@ -4,8 +4,7 @@
   "description": "A simple tutorial on building an isomorphic/universal web app using react and redux.",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack --watch",
-    "build": "webpack -p"
+    "dev": "node ."
   },
   "repository": {
     "type": "git",
@@ -28,7 +27,9 @@
     "webpack": "^1.12.13"
   },
   "dependencies": {
+    "babel-register": "^6.4.3",
     "es6-promise": "^3.0.2",
+    "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1"
   }
 }
