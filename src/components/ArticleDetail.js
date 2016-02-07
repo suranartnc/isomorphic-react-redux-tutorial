@@ -1,22 +1,6 @@
 import React, { Component } from 'react';
 
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
-
-const API_URL = 'https://api.stackexchange.com/2.2/';
-
-function fetchData(url, callback) {
-	fetch(url)
-	  	.then(response => {
-	    	if (response.status >= 400) {
-	      		throw new Error("Bad response from server");
-	    	}
-	    	return response.json();
-	  	})
-	  	.then(data => {
-	    	callback(data);
-	  	});
-}
+import fetchData, { api } from '../utils/fetchData';
 
 export default class ArticleDetail extends Component {
 	
@@ -31,7 +15,7 @@ export default class ArticleDetail extends Component {
 	}
 
 	getArticleById(id) {
-		fetchData(`${API_URL}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`, (data) => {
+		fetchData(`${api.stackExchange}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`, (data) => {
 			this.setState({
 				article: data.items[0]
 			});
