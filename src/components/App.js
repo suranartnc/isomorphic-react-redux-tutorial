@@ -5,13 +5,12 @@ import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
 
-const App = () => {
+const App = (props) => {
 	return (
 		<div className="container">
 			<Header />
 			<div>
-				<Main />
-				<Sidebar />
+				{ props.children }
 			</div>
 			<Footer />
 		</div>

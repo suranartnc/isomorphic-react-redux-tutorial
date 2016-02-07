@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/App';
+import { Router, Route, IndexRoute } from 'react-router';
 
-ReactDOM.render(<App /> , document.getElementById('app'));
+import App from './components/App';
+import Main from './components/Main';
+
+ReactDOM.render(
+	<Router>
+		<Route path={`/`} component={App}>
+			<IndexRoute component={Main} />
+		</Route>
+	</Router>
+	, document.getElementById('app'));
