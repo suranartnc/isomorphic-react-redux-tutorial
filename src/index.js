@@ -1,9 +1,10 @@
-const person = {
-  name: 'suranart',
-  gender: 'male',
-  nationality: 'thailand'
-};
- 
-const { name, gender } = person;
- 
-console.log(`${name} is ${gender}.`);
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const App = () => {
+	return (
+		<div>Rendered by ReactDOM</div>
+	);
+}
+
+ReactDOM.render(<App /> , document.getElementById('app'));
