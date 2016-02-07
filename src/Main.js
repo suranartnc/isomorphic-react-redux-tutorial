@@ -31,6 +31,8 @@ export default class Main extends Component {
 			articles: []
 		}
 
+		this.getSearchResults = this.getSearchResults.bind(this);
+		
 		setTimeout(() => {
 			fetchData(`${API_URL}questions?order=desc&sort=activity&site=stackoverflow`, (data) => {
 				this.setState({
@@ -41,7 +43,11 @@ export default class Main extends Component {
 	}
 
 	getSearchResults(keyword) {
-		console.log(keyword);
+		fetchData(`${API_URL}search/advanced?order=desc&sort=activity&site=stackoverflow&q=${keyword}`, (data) => {
+			this.setState({
+				articles: data.items
+			});
+		});
 	}
 
 	render() {
