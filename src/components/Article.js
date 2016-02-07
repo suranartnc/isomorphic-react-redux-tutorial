@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 
 const Article = (props) => {
 
 	return (
 		<article>
-			<h2>{ props.article.title }</h2>
+			<Link to={`questions/${props.article.question_id}`}>{ props.article.title }</Link>
 		</article>
 	);
 }
