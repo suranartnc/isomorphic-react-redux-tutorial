@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
+import ArticleList from './ArticleList';
 import Article from './Article';
 
 const API_URL = 'https://api.stackexchange.com/2.2/';
@@ -41,11 +42,7 @@ export default class Main extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.articles.map(function(article, index) {
-					return (
-						<Article key={ article.question_id } article={article} />
-					);
-				})}
+				<ArticleList articles={this.state.articles} />
 			</div>
 		);
 	}
