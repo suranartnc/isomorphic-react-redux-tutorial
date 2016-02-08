@@ -9,6 +9,10 @@ import SearchBar from './SearchBar';
 
 class Home extends Component {
 
+	static prefetchData = [
+		ArticleActions.getLatestArticles
+	];
+
 	componentDidMount() {
 		this.props.getLatestArticles();
 	}

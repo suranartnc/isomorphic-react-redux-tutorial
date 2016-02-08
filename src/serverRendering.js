@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import promiseMiddleware from './middlewares/promiseMiddleware';
 import routes from './routes';
+import prefetchComponentData from './utils/prefetchComponentData';
 
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
 
@@ -20,7 +21,10 @@ export default function(req, res) {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      res.status(200).send(renderHTML())
+      prefetchComponentData(store.dispatch, renderProps.components, renderProps.params)
+        .then(renderHTML)
+        .then((html) => res.status(200).send(html))
+        .catch(err => res.end(err.message));
     } else {
       res.status(404).send('Not found')
     }
