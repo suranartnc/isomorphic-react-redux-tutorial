@@ -12,7 +12,8 @@ import { Provider } from 'react-redux';
 import reducers from './reducers';
 import promiseMiddleware from './middlewares/promiseMiddleware';
 
-const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
+const initialState = window.__INITIAL_STATE__;
+const store = applyMiddleware(promiseMiddleware)(createStore)(reducers, initialState);
 
 ReactDOM.render(
 	<Provider store={store}>
