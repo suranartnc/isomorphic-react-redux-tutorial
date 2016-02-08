@@ -31,6 +31,8 @@ export default function(req, res) {
 
     function renderHTML() {
 
+        const initialState = store.getState();
+
         const renderedComponent = ReactDOM.renderToString(
             <Provider store={store}>
               <RoutingContext {...renderProps} />
@@ -48,6 +50,9 @@ export default function(req, res) {
               </head>
               <body>
                 <div id="app">${renderedComponent}</div>
+                <script type="application/javascript">
+                   window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+                </script>
                 <script src="/assets/bundle.js"></script>
               </body>
             </html>    
