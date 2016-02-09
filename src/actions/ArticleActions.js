@@ -15,9 +15,9 @@ export function getSearchResults(keyword) {
 	}
 }
 
-export function getArticleById(id) {
+export function getArticleById(params) {
 	return {
 		type: 'GET_ARTICLE_BY_ID',
-		promise: getFetchPromise(`${api.stackExchange}questions/${id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`)
+		promise: getFetchPromise(`${api.stackExchange}questions/${params.question_id}?order=desc&sort=activity&site=stackoverflow&filter=withbody`)
 	}
 }

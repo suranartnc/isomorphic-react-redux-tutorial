@@ -10,9 +10,9 @@ import promiseMiddleware from './middlewares/promiseMiddleware';
 import routes from './routes';
 import prefetchComponentData from './utils/prefetchComponentData';
 
-const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
-
 export default function(req, res) {
+
+  const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     

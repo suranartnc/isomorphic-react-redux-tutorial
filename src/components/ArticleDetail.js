@@ -8,14 +8,19 @@ import ArticleList from './ArticleList';
 
 class ArticleDetail extends Component {
 
+	static prefetchData = [
+		ArticleActions.getArticleById,
+		ArticleActions.getLatestArticles
+	];
+
 	componentDidMount() {
-		this.props.getArticleById(this.props.params.question_id);
+		this.props.getArticleById(this.props.params);
 		this.props.getLatestArticles();
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.params.question_id !== nextProps.params.question_id) {
-			this.props.getArticleById(nextProps.params.question_id);
+			this.props.getArticleById(nextProps.params);
 			this.props.getLatestArticles();		
 		}
 	}
