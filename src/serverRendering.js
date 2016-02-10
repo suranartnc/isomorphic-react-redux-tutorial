@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import Helmet from 'react-helmet';
+
 import { match, RoutingContext } from 'react-router'
 
 import { applyMiddleware, createStore } from 'redux';
@@ -32,6 +34,7 @@ export default function(req, res) {
     function renderHTML() {
 
         const initialState = store.getState();
+        let head = Helmet.rewind();
 
         const renderedComponent = ReactDOM.renderToString(
             <Provider store={store}>
@@ -45,7 +48,9 @@ export default function(req, res) {
               <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Isomorphic React Redux Tutorial</title>
+                ${head.title.toString()}
+                ${head.meta.toString()}
+                ${head.link.toString()}
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
               </head>
               <body>
