@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import { match, RoutingContext } from 'react-router'
+import { match, RouterContext } from 'react-router'
 
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -38,7 +38,7 @@ export default function(req, res) {
 
         const renderedComponent = ReactDOM.renderToString(
             <Provider store={store}>
-              <RoutingContext {...renderProps} />
+              <RouterContext {...renderProps} />
             </Provider>
         );
 
