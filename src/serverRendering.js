@@ -34,13 +34,14 @@ export default function(req, res) {
     function renderHTML() {
 
         const initialState = store.getState();
-        let head = Helmet.rewind();
 
         const renderedComponent = ReactDOM.renderToString(
             <Provider store={store}>
               <RouterContext {...renderProps} />
             </Provider>
         );
+
+        let head = Helmet.rewind();
 
         const HTML = `
             <!DOCTYPE html>
