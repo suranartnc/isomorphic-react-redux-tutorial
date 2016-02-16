@@ -9,12 +9,13 @@ import { Provider } from 'react-redux';
 
 import reducers from './redux/reducers';
 import promiseMiddleware from './redux/middlewares/promiseMiddleware';
+import loggerMiddleware from './redux/middlewares/loggerMiddleware';
 import routes from './routes';
 import prefetchComponentData from './utils/prefetchComponentData';
 
 export default function(req, res) {
 
-  const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
+  const store = applyMiddleware(promiseMiddleware, loggerMiddleware)(createStore)(reducers);
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     
