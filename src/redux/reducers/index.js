@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
-import ArticleListReducer from './ArticleListReducer';
-import ArticleActiveReducer from './ArticleActiveReducer';
+import QuestionReducer from './QuestionReducer';
 
 const rootReducer = combineReducers({
-	articleList: ArticleListReducer,
-	articleActive: ArticleActiveReducer
+	questions: QuestionReducer
 });
 
 export default rootReducer;

@@ -12,11 +12,12 @@ import routes from './routes';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './redux/reducers';
-import promiseMiddleware from './redux/middlewares/promiseMiddleware';
+
+import clientMiddleware from './redux/middlewares/clientMiddleware';
 import loggerMiddleware from './redux/middlewares/loggerMiddleware';
 
 const initialState = window.__INITIAL_STATE__;
-const store = applyMiddleware(promiseMiddleware, loggerMiddleware)(createStore)(reducers, initialState);
+const store = applyMiddleware(clientMiddleware, loggerMiddleware)(createStore)(reducers, initialState);
 
 ReactDOM.render(
 	<Provider store={store}>
