@@ -7,8 +7,8 @@ import { match, RouterContext } from 'react-router'
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducers from './reducers';
-import promiseMiddleware from './middlewares/promiseMiddleware';
+import reducers from './redux/reducers';
+import promiseMiddleware from './redux/middlewares/promiseMiddleware';
 import routes from './routes';
 import prefetchComponentData from './utils/prefetchComponentData';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as ArticleActions from '../actions/ArticleActions';
+import * as ArticleActions from '../redux/actions/ArticleActions';
 
 import ArticleList from './ArticleList';
 import SearchBar from './SearchBar';

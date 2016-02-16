@@ -11,8 +11,8 @@ import routes from './routes';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from './reducers';
-import promiseMiddleware from './middlewares/promiseMiddleware';
+import reducers from './redux/reducers';
+import promiseMiddleware from './redux/middlewares/promiseMiddleware';
 
 const initialState = window.__INITIAL_STATE__;
 const store = applyMiddleware(promiseMiddleware)(createStore)(reducers, initialState);

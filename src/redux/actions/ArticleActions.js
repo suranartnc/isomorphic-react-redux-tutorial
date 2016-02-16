@@ -1,4 +1,4 @@
-import { getFetchPromise, api } from '../utils/fetchData';
+import { getFetchPromise, api } from '../../utils/fetchData';
 
 export function getLatestArticles() {
 	return {
