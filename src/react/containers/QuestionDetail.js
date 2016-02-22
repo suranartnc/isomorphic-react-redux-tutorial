@@ -10,20 +10,20 @@ import ArticleList from '../components/ArticleList';
 class QuestionDetail extends Component {
   
 	static prefetchData = [
-  		QuestionActions.getQuestionById,
+  		(params) => QuestionActions.getQuestionById(params.question_id),
   		QuestionActions.getQuestions
   	];
 
   	componentDidMount() {
   		if (! this.props.question.loaded || this.props.question.data.question_id != this.props.params.question_id) {
-  			this.props.getQuestionById(this.props.params);
+  			this.props.getQuestionById(this.props.params.question_id);
   			this.props.getQuestions();
   		}
   	}
 
   	componentWillReceiveProps(nextProps) {
   		if (this.props.params.question_id !== nextProps.params.question_id) {
-  			this.props.getQuestionById(nextProps.params);
+  			this.props.getQuestionById(nextProps.params.question_id);
   			this.props.getQuestions();
   		}
   	}

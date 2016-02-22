@@ -24,7 +24,7 @@ export function getQuestions() {
 	};
 }
 
-export function getQuestionById(params) {
+export function getQuestionById(question_id) {
 	return {
 		types: {
 			request: GET_QUESTION_BY_ID,
@@ -33,7 +33,7 @@ export function getQuestionById(params) {
 		},
 
 		promise: client => {
-			return client.findQuestion(params.question_id);
+			return client.findQuestion(question_id);
 		}
 	};
 }
