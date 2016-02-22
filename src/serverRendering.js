@@ -4,17 +4,16 @@ import Helmet from 'react-helmet';
 
 import { match, RouterContext } from 'react-router'
 
-import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import reducers from './reducers';
-import promiseMiddleware from './middlewares/promiseMiddleware';
 import routes from './routes';
 import prefetchComponentData from './utils/prefetchComponentData';
 
+import createStore from './redux/createStore';
+
 export default function(req, res) {
 
-  const store = applyMiddleware(promiseMiddleware)(createStore)(reducers);
+  const store = createStore();
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     

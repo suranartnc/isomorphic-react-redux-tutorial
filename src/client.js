@@ -7,15 +7,14 @@ import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 const history = useScroll(createBrowserHistory)();
 
+import { Provider } from 'react-redux';
+
 import routes from './routes';
 
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import reducers from './reducers';
-import promiseMiddleware from './middlewares/promiseMiddleware';
+import createStore from './redux/createStore';
 
 const initialState = window.__INITIAL_STATE__;
-const store = applyMiddleware(promiseMiddleware)(createStore)(reducers, initialState);
+const store = createStore(initialState);
 
 ReactDOM.render(
 	<Provider store={store}>
