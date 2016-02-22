@@ -61,7 +61,6 @@ export function getQuestionContentById(question_id) {
 		...getQuestionById(question_id),
 
 		onPromiseResolve: result => {
-			console.log(result.items[0].tags[0]);
 			return getRelatedQuestions(result.items[0].tags[0]);
 		}
 	}
@@ -70,6 +69,7 @@ export function getQuestionContentById(question_id) {
 export function getRelatedQuestions(tag = '') {
 	return {
 		...searchQuestions(tag),
+		
 		types: {
 			request: GET_RELATED_QUESTIONS,
 			success: GET_RELATED_QUESTIONS_SUCCESS,
