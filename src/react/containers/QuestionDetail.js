@@ -9,19 +9,19 @@ import ArticleList from '../components/ArticleList';
 
 class QuestionDetail extends Component {
   
-  static prefetchData = [
-    (params) => QuestionActions.getQuestionContentById(params.question_id)
+  	static prefetchData = [
+    	(params) => QuestionActions.getQuestionContentById(params.question_id)
 	];
 
 	componentDidMount() {
 		if (! this.props.question.loaded || this.props.question.data.question_id != this.props.params.question_id) {
-      this.props.getQuestionContentById(this.props.params.question_id);
+      		this.props.getQuestionContentById(this.props.params.question_id);
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.params.question_id !== nextProps.params.question_id) {
-      this.props.getQuestionContentById(nextProps.params.question_id);
+      		this.props.getQuestionContentById(nextProps.params.question_id);
 		}
 	}
 
@@ -40,7 +40,7 @@ class QuestionDetail extends Component {
 
     			<h1 dangerouslySetInnerHTML={{__html: this.props.question.data.title }} />
     			<div dangerouslySetInnerHTML={{__html: this.props.question.data.body }} />
-			    <ArticleList articles={this.props.questions.data} />
+			    <ArticleList articles={this.props.question.related} />
     		</article>
   	);
 	}
@@ -49,7 +49,6 @@ class QuestionDetail extends Component {
 export default connect(
 	state => {
 		return {
-			questions: state.questions.list,
 			question: state.questions.active
 		};
 	},

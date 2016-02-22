@@ -4,15 +4,21 @@ import {
 	GET_QUESTION_BY_ID_SUCCESS,
 	GET_QUESTION_BY_ID_FAILURE,
 
+	GET_RELATED_QUESTIONS,
+	GET_RELATED_QUESTIONS_SUCCESS,
+	GET_RELATED_QUESTIONS_FAILURE
+
 } from '../../actions/QuestionActions';
 
 const initialData = {};
+const initialRelated = [];
 
 const initialState = {
 	loading: false,
 	loaded: false,
 	error: null,
-	data: initialData
+	data: initialData,
+	related: initialRelated
 };
 
 export default function (state = initialState, action) {
@@ -23,7 +29,8 @@ export default function (state = initialState, action) {
 				loading: true, 
 				loaded: false,
 				error: null,
-				data: initialData
+				data: initialData,
+				related: initialRelated
 			};
 
 		case GET_QUESTION_BY_ID_SUCCESS:
@@ -42,6 +49,12 @@ export default function (state = initialState, action) {
 				loaded: true,
 				error: action.error,
 				data: initialData
+			};
+
+		case GET_RELATED_QUESTIONS_SUCCESS:
+			return { 
+				...state, 
+				related: action.result.items
 			};
 
 		default:

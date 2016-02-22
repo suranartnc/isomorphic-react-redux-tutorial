@@ -10,6 +10,10 @@ export const SEARCH_QUESTIONS = Symbol('search questions');
 export const SEARCH_QUESTIONS_SUCCESS = Symbol('search questions success');
 export const SEARCH_QUESTIONS_FAILURE = Symbol('search questions failure');
 
+export const GET_RELATED_QUESTIONS = Symbol('get related questions');
+export const GET_RELATED_QUESTIONS_SUCCESS = Symbol('get related questions success');
+export const GET_RELATED_QUESTIONS_FAILURE = Symbol('get related questions failure');
+
 export function getQuestions() {
 	return {
 		types: {
@@ -57,7 +61,19 @@ export function getQuestionContentById(question_id) {
 		...getQuestionById(question_id),
 
 		onPromiseResolve: result => {
-			return searchQuestions(result.items[0].tags[0]);
+			console.log(result.items[0].tags[0]);
+			return getRelatedQuestions(result.items[0].tags[0]);
 		}
+	}
+}
+
+export function getRelatedQuestions(tag = '') {
+	return {
+		...searchQuestions(tag),
+		types: {
+			request: GET_RELATED_QUESTIONS,
+			success: GET_RELATED_QUESTIONS_SUCCESS,
+			failure: GET_RELATED_QUESTIONS_FAILURE
+		},
 	}
 }
