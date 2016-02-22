@@ -23,7 +23,7 @@ class Home extends Component {
 		return (
 			<div>
 				<SearchBar getSearchResults={this.props.searchQuestions} />
-				<ArticleList articles={this.props.questions.items} />
+				<ArticleList articles={this.props.questions.data} />
 			</div>
 		);
 	}

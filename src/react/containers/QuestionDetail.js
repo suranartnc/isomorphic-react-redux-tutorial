@@ -43,7 +43,7 @@ class QuestionDetail extends Component {
 
       			<h1 dangerouslySetInnerHTML={{__html: this.props.question.data.title }} />
       			<div dangerouslySetInnerHTML={{__html: this.props.question.data.body }} />
-				    <ArticleList articles={this.props.questions.items} />
+				    <ArticleList articles={this.props.questions.data} />
       		</article>
     	);
   	}
