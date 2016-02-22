@@ -38,7 +38,7 @@ export function getQuestionById(question_id) {
 	};
 }
 
-export function searchQuestions(keyword) {
+export function searchQuestions(keyword = '') {
 	return {
 		types: {
 			request: SEARCH_QUESTIONS,
@@ -50,4 +50,14 @@ export function searchQuestions(keyword) {
 			return client.searchQuestions(keyword);
 		}
 	};
+}
+
+export function getQuestionContentById(question_id) {
+	return {
+		...getQuestionById(question_id),
+
+		onPromiseResolve: result => {
+			return searchQuestions(result.items[0].tags[0]);
+		}
+	}
 }
