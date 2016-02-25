@@ -36,7 +36,7 @@ export default function (state = initialState, action) {
 				loading: false,
 				loaded: true,
 				error: null,
-				data: action.result.items 
+				data: action.result 
 			};
 
 		case GET_QUESTIONS_FAILURE:

@@ -39,7 +39,7 @@ export default function (state = initialState, action) {
 				loading: false,
 				loaded: true,
 				error: null,
-				data: action.result.items[0]
+				data: action.result
 			};
 
 		case GET_QUESTION_BY_ID_FAILURE:
@@ -54,7 +54,7 @@ export default function (state = initialState, action) {
 		case GET_RELATED_QUESTIONS_SUCCESS:
 			return { 
 				...state, 
-				related: action.result.items
+				related: action.result
 			};
 
 		default:
