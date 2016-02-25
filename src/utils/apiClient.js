@@ -1,62 +1,25 @@
-import fetch from 'isomorphic-fetch';
-
-const baseApiUrl = 'https://api.stackexchange.com/2.2';
-
-const getFullUrl = (uri, params = {}) => {
-	let url = `${baseApiUrl}${uri}`;
-
-	const queryString = buildQueryString(params);
-	if (queryString) {
-		const queryOperator = uri.indexOf('?') === -1 ? '?' : '&';
-		url += `${queryOperator}${queryString}`;
-	}
-
-	return url;
-};
-
-const buildQueryString = (params = {}) => {
-	if (Object.keys(params).length === 0) {
-		return null;
-	}
-
-	let queryString = [];
-
-	Object.keys(params).forEach(key => {
-		queryString.push(`${key}=${params[key]}`);
-	});
-
-	return queryString.join('&');
-};
-
-const get = (uri, params = {}) => {
-	const url = getFullUrl(uri, params);
-	return fetch(url);
-};
+import { get, getFullUrl, buildQueryString } from './apiHelper'
 
 export default class ApiClient {
+
 	findQuestions() {
-		return get('/questions', {
-			order: 'desc',
-			sort: 'activity',
-			site: 'stackoverflow'
+		return get('/articles', {
+			_sort: 'id',
+			_order: 'DESC',
+			_limit: '20'
 		});
 	}
 
 	searchQuestions(keyword) {
-		return get('/search/advanced', {
-			order: 'desc',
-			sort: 'activity',
-			site: 'stackoverflow',
-			q: keyword
+		return get('/articles', {
+			q: keyword,
+			_sort: 'id',
+			_order: 'DESC',
+			_limit: '20'
 		});
 	}
 
 	findQuestion(id) {
-		return get(`/questions/${id}`, {
-			order: 'desc',
-			sort: 'activity',
-			site: 'stackoverflow',
-			filter: 'withbody'
-		});
+		return get(`/articles/${id}`);
 	}
 }
