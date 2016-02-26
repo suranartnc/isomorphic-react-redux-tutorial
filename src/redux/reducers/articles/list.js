@@ -1,12 +1,12 @@
 import {
-	GET_QUESTIONS,
-	GET_QUESTIONS_SUCCESS,
-	GET_QUESTIONS_FAILURE,
+	GET_ARTICLES,
+	GET_ARTICLES_SUCCESS,
+	GET_ARTICLES_FAILURE,
 
-	SEARCH_QUESTIONS,
-	SEARCH_QUESTIONS_SUCCESS,
-	SEARCH_QUESTIONS_FAILURE
-} from '../../actions/QuestionActions';
+	SEARCH_ARTICLES,
+	SEARCH_ARTICLES_SUCCESS,
+	SEARCH_ARTICLES_FAILURE
+} from '../../actions/ArticleActions';
 
 const initialData = [];
 
@@ -19,8 +19,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_QUESTIONS:
-		case SEARCH_QUESTIONS:
+		case GET_ARTICLES:
+		case SEARCH_ARTICLES:
 			return { 
 				...state, 
 				loading: true, 
@@ -29,8 +29,8 @@ export default function (state = initialState, action) {
 				data: initialData
 			};
 
-		case GET_QUESTIONS_SUCCESS:
-		case SEARCH_QUESTIONS_SUCCESS:
+		case GET_ARTICLES_SUCCESS:
+		case SEARCH_ARTICLES_SUCCESS:
 			return { 
 				...state, 
 				loading: false,
@@ -39,8 +39,8 @@ export default function (state = initialState, action) {
 				data: action.result 
 			};
 
-		case GET_QUESTIONS_FAILURE:
-		case SEARCH_QUESTIONS_FAILURE:
+		case GET_ARTICLES_FAILURE:
+		case SEARCH_ARTICLES_FAILURE:
 			return { 
 				...state, 
 				loading: false, 

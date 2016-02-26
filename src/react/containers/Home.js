@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as QuestionActions from '../../redux/actions/QuestionActions';
+import * as ArticleActions from '../../redux/actions/ArticleActions';
 
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
@@ -10,20 +10,20 @@ import SearchBar from '../components/SearchBar';
 class Home extends Component {
 
 	static prefetchData = [
-		QuestionActions.getQuestions
+		ArticleActions.getArticles
 	];
 
 	componentDidMount() {
-		if (! this.props.questions.loaded) {
-			this.props.getQuestions();
+		if (! this.props.articles.loaded) {
+			this.props.getArticles();
 		}
 	}
 
 	render() {
 		return (
 			<div>
-				<SearchBar getSearchResults={this.props.searchQuestions} />
-				<ArticleList articles={this.props.questions.data} />
+				<SearchBar getSearchResults={this.props.searchArticles} />
+				<ArticleList articles={this.props.articles.data} />
 			</div>
 		);
 	}
@@ -31,12 +31,12 @@ class Home extends Component {
 
 function mapStateToProps(state) {
 	return {
-		questions: state.questions.list
+		articles: state.articles.list
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators(QuestionActions, dispatch);
+	return bindActionCreators(ArticleActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

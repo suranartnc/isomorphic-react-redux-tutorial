@@ -2,7 +2,7 @@ import { get, getFullUrl, buildQueryString } from './apiHelper'
 
 export default class ApiClient {
 
-	findQuestions() {
+	getArticles() {
 		return get('/articles', {
 			_sort: 'id',
 			_order: 'DESC',
@@ -10,7 +10,7 @@ export default class ApiClient {
 		});
 	}
 
-	searchQuestions(keyword) {
+	searchArticles(keyword) {
 		return get('/articles', {
 			q: keyword,
 			_sort: 'id',
@@ -19,7 +19,7 @@ export default class ApiClient {
 		});
 	}
 
-	findQuestion(id) {
+	getArticle(id) {
 		return get(`/articles/${id}`);
 	}
 }

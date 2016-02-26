@@ -1,14 +1,13 @@
 import {
+	GET_ARTICLE_BY_ID,
+	GET_ARTICLE_BY_ID_SUCCESS,
+	GET_ARTICLE_BY_ID_FAILURE,
 
-	GET_QUESTION_BY_ID,
-	GET_QUESTION_BY_ID_SUCCESS,
-	GET_QUESTION_BY_ID_FAILURE,
+	GET_RELATED_ARTICLES,
+	GET_RELATED_ARTICLES_SUCCESS,
+	GET_RELATED_ARTICLES_FAILURE
 
-	GET_RELATED_QUESTIONS,
-	GET_RELATED_QUESTIONS_SUCCESS,
-	GET_RELATED_QUESTIONS_FAILURE
-
-} from '../../actions/QuestionActions';
+} from '../../actions/ArticleActions';
 
 const initialData = {};
 const initialRelated = [];
@@ -23,7 +22,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_QUESTION_BY_ID:
+		case GET_ARTICLE_BY_ID:
 			return { 
 				...state, 
 				loading: true, 
@@ -33,7 +32,7 @@ export default function (state = initialState, action) {
 				related: initialRelated
 			};
 
-		case GET_QUESTION_BY_ID_SUCCESS:
+		case GET_ARTICLE_BY_ID_SUCCESS:
 			return { 
 				...state, 
 				loading: false,
@@ -42,7 +41,7 @@ export default function (state = initialState, action) {
 				data: action.result
 			};
 
-		case GET_QUESTION_BY_ID_FAILURE:
+		case GET_ARTICLE_BY_ID_FAILURE:
 			return { 
 				...state,
 				loading: false,
@@ -51,7 +50,7 @@ export default function (state = initialState, action) {
 				data: initialData
 			};
 
-		case GET_RELATED_QUESTIONS_SUCCESS:
+		case GET_RELATED_ARTICLES_SUCCESS:
 			return { 
 				...state, 
 				related: action.result

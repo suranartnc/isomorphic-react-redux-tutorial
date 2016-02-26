@@ -4,9 +4,9 @@ import ListReducer from './list'
 import ActiveReducer from './active'
 
 
-const QuestionsReducer = combineReducers({
+const ArticlesReducer = combineReducers({
 	list: ListReducer,
 	active: ActiveReducer
 })
 
-export default QuestionsReducer
+export default ArticlesReducer
