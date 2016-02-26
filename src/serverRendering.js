@@ -9,11 +9,15 @@ import { Provider } from 'react-redux';
 import routes from './routes';
 import prefetchComponentData from './utils/prefetchComponentData';
 
+import ApiClient from './utils/apiClient';
+
 import createStore from './redux/createStore';
+
+const apiClient = new ApiClient();
 
 export default function(req, res) {
 
-  const store = createStore();
+  const store = createStore(apiClient);
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     

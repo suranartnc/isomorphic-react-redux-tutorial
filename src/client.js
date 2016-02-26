@@ -13,8 +13,12 @@ import routes from './routes';
 
 import createStore from './redux/createStore';
 
+import ApiClient from './utils/apiClient';
+
+const apiClient = new ApiClient();
+
 const initialState = window.__INITIAL_STATE__;
-const store = createStore(initialState);
+const store = createStore(apiClient, initialState);
 
 ReactDOM.render(
 	<Provider store={store}>

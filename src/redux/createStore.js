@@ -9,10 +9,10 @@ import {
 
 import reducers from './reducers';
 
-export default (initialState) => {
+export default (apiClient, initialState) => {
 	const middlewares = [
 		thunk,
-		promiseResolverMiddleware,
+		promiseResolverMiddleware(apiClient),
 		loggerMiddleware
 	];
 
