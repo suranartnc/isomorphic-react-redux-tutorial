@@ -1,12 +1,24 @@
 import React from 'react';
-
-import Nav from './Nav';
+import { Link } from 'react-router';
 
 const Header = () => {
 	return (
-		<div>
-			<img src="" alt="Logo" />
-			<Nav />
+		<div className="row">
+			<nav className="navbar navbar-default">
+				<div className="container-fluid">
+
+					<div className="navbar-header">
+				      	<Link className="navbar-brand" to={'/'}>Isomorphic React Redux Tutorial</Link>
+					</div>
+
+					<ul className="nav navbar-nav">
+						<li>
+							<Link to={'/about'}>About</Link>
+						</li>
+					</ul>
+
+				</div>
+			</nav>
 		</div>
 	);
 }
