@@ -10,13 +10,19 @@ export default class ApiClient {
 		});
 	}
 
-	searchArticles(keyword) {
-		return get('/articles', {
+	searchArticles(keyword, excludedId = null) {
+		let params = {
 			q: keyword,
 			_sort: 'id',
 			_order: 'DESC',
 			_limit: '20'
-		});
+		};
+
+		if (excludedId) {
+			params.id_ne = excludedId;
+		}
+		
+		return get('/articles', params);
 	}
 
 	getArticle(id) {

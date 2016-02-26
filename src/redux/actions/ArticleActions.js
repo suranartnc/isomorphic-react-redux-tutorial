@@ -42,7 +42,7 @@ export function getArticleById(id) {
 	};
 }
 
-export function searchArticles(keyword = '') {
+export function searchArticles(keyword = '', excludedId = null) {
 	return {
 		types: {
 			request: SEARCH_ARTICLES,
@@ -51,7 +51,7 @@ export function searchArticles(keyword = '') {
 		},
 
 		promise: client => {
-			return client.searchArticles(keyword);
+			return client.searchArticles(keyword, excludedId);
 		}
 	};
 }
@@ -61,14 +61,14 @@ export function getArticleContentById(article_id) {
 		...getArticleById(article_id),
 
 		onPromiseResolve: result => {
-			return getRelatedArticles(result.tags[0]);
+			return getRelatedArticles(result.tags[0], article_id);
 		}
 	}
 }
 
-export function getRelatedArticles(tag = '') {
+export function getRelatedArticles(tag = '', excludedId = null) {
 	return {
-		...searchArticles(tag),
+		...searchArticles(tag, excludedId),
 		
 		types: {
 			request: GET_RELATED_ARTICLES,
