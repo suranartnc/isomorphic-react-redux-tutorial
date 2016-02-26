@@ -1,3 +1,3 @@
 export App from './App';
 export Home from './Home';
-export ArticleDetail from './ArticleDetail';
+export Entry from './Entry';

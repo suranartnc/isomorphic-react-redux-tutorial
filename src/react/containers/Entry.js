@@ -7,7 +7,7 @@ import * as ArticleActions from '../../redux/actions/ArticleActions';
 import Helmet from 'react-helmet';
 import ArticleList from '../components/ArticleList';
 
-class ArticleDetail extends Component {
+class Entry extends Component {
   
   	static prefetchData = [
     	(params) => ArticleActions.getArticleContentById(params.article_id)
@@ -53,4 +53,4 @@ export default connect(
 		};
 	},
 	ArticleActions
-)(ArticleDetail);
+)(Entry);
